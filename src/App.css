@@ -1,219 +1,131 @@
-/* 全局字体和排版 */
-body, .App {
-  font-family: 'Arial', sans-serif;
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #8e9eab, #eef2f3);
   color: #333;
-  line-height: 1.6;
-  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 25%, #ffddd2 75%, #faaca8 100%);
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-/* 标题样式 */
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  font-weight: 700;
-  color: #34495e;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* 段落和其他文本 */
-p {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-/* 输入框样式 */
-input[type="text"],
-input[type="number"] {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
-  margin-bottom: 15px;
-  font-size: 1rem;
-  color: #333;
-  background-color: #fff;
-  transition: all 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus {
-  border-color: #87CEEB;
-  box-shadow: 0 0 5px rgba(135, 206, 235, 0.5);
-}
-
-/* 圆形按钮样式 */
-.round-btn {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  width: 70px; /* 根据需要调整 */
-  height: 70px; /* 保持宽高相等 */
-  line-height: normal; /* 移除固定的行高 */
-  border-radius: 50%;
-  background-color: #87CEEB;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.connect-wallet-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: #007bff;
   color: white;
-  text-align: center;
-  font-size: 1rem; /* 调整字体大小 */
-  font-weight: bold;
+  border: none;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: none;
-  outline: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  white-space: nowrap; /* 确保单行显示 */
-  overflow: hidden; /* 隐藏超出部分 */
 }
 
-/* 对于较长的文本，允许换行 */
-.round-btn.multiline {
-  width: auto;
-  padding: 10px 20px;
-  border-radius: 20px; /* 如果不是严格要求圆形，可以改为圆角矩形 */
-  white-space: normal; /* 允许多行 */
-  word-wrap: break-word; /* 允许长单词换行 */
-  min-width: 70px; /* 设置最小宽度 */
-  min-height: 70px; /* 设置最小高度 */
+.connect-wallet-button:hover {
+  background-color: #0056b3;
 }
 
-.round-btn:hover:not(:disabled):not(.loading) {
-  background-color: #60A9D1;
-  transform: translateY(-2px);
+.connected-content {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
 }
 
-.round-btn:disabled,
-.round-btn.loading {
-  background-color: #ddd;
-  cursor: not-allowed;
-  box-shadow: none;
+.circular-modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* 控制项目之间的间距 */
+  justify-content: center;
+  width: 100%;
 }
-/* 文本框容器 */
-.text-box {
-  background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
-  border-radius: 10px;
+
+/* 确保每行显示两个圆形模块 */
+.circular-module {
+  width: calc(50% - 10px); /* 每行两个模块，考虑gap */
+  min-width: 200px; /* 减小最小宽度 */
+  box-shadow: 0 0 5px lightgray;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
-  max-width: 500px;
-  margin: 20px auto; /* 居中 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  position: relative; /* 添加相对定位 */
+}
+
+.circular-module:hover {
+  transform: scale(1.05);
+}
+
+.circular-module h2 {
+  margin: 0 0 10px;
+  font-size: 11px; /* 减小字体大小 */
+  word-break: break-all; /* 防止标题过长 */
+}
+
+.module-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+  overflow: hidden; /* 确保内容不会溢出 */
+}
+
+.module-content input.round-input,
+.module-content button.round-button {
+  margin: 10px 0;
+  width: 80%;
+  height: 40px; /* 减小高度 */
+  padding: 0 20px;
+  border-radius: 50px;
+  font-size: 14px; /* 减小字体大小 */
+  box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
-.text-box h2 {
-  margin-top: 0;
-}
-
-.text-box p {
-  margin-bottom: 15px;
-}
-
-.text-box form {
-  display: flex;
-  flex-direction: column;
-}
-
-.text-box ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.text-box li {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.text-box li button {
-  margin-left: 10px;
-}
-
-/* NFT画廊容器样式 */
-.nft-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-/* 每个NFT项的卡片样式 */
-.listBox {
-  width: 200px;
-  height: auto; /* 自动适应内容高度 */
-  box-shadow: 0 0 5px lightgray;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
+.module-content input.round-input {
+  border: 2px solid #007bff;
   background-color: #fff;
-  padding: 15px;
 }
 
-.listBox .listImg {
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  margin-bottom: 10px;
+.module-content input.round-input:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-.listBox .listImg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.listBox .listTitle {
-  width: calc(100% - 20px); /* 减去左右内边距 */
-  margin-bottom: 5px;
-  text-align: center;
+.module-content button.round-button {
+  background-color: #007bff;
+  color: white;
   font-weight: bold;
-  font-size: 1.2rem;
-  color: #2c3e50;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  border: none;
+  cursor: pointer;
 }
 
-.listBox .listRemark {
-  width: calc(100% - 20px); /* 减去左右内边距 */
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-  color: #777;
-  line-height: 1.4; /* 确保多行文本有适当的行间距 */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; /* 控制显示的最大行数 */
-  overflow: hidden;
-  text-overflow: ellipsis;
+.module-content button.round-button:hover {
+  background-color: #0056b3;
 }
 
-.listBox .listBtnBox {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.module-content button.round-button:disabled {
+  background-color: #ddd;
 }
 
-/* 特殊文本效果 */
-.special-text {
-  font-size: 1.2rem;
-  color: #fff;
-  background: linear-gradient(45deg, #ff6f61, #ec588a, #ffcc70);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.module-content p {
+  margin: 5px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-all; /* 确保段落中的长单词不会溢出 */
 }
